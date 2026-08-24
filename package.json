@@ -1,0 +1,47 @@
+{
+  "name": "greenlit-books",
+  "version": "1.0.0",
+  "description": "Official thin CLI for the Greenlit Books public catalog API: search, browse, and fetch practical books on working with AI. JSON-first, built for agents and humans.",
+  "keywords": [
+    "greenlit-books",
+    "cli",
+    "books",
+    "ai",
+    "agents",
+    "mcp",
+    "claude",
+    "catalog",
+    "search"
+  ],
+  "homepage": "https://greenlitbooks.com/developers",
+  "bugs": "https://github.com/greenlitbooks/cli/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greenlitbooks/cli.git"
+  },
+  "license": "MIT",
+  "author": "Greenlit Books (https://greenlitbooks.com)",
+  "type": "module",
+  "bin": {
+    "greenlit": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node --test"
+  },
+  "dependencies": {
+    "commander": "^14.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.6.0"
+  }
+}
