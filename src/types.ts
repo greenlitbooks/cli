@@ -182,10 +182,56 @@ export interface SearchResponse {
 export interface CatalogResponse {
   meta: Meta;
   publisher: { name: string; url: string; description: string };
-  counts: { books: number; series: number; concepts: number; topics: number };
+  counts: { books: number; series: number; concepts: number; topics: number; terms: number };
   series: Series[];
   imprints: Imprint[];
   books: BookDetail[];
   concepts: Concept[];
   topics: Topic[];
+  terms: Term[];
+}
+
+export interface HandoffLinks {
+  glossary: string | null;
+  glossaryMarkdown: string | null;
+  concept: string | null;
+  conceptMarkdown: string | null;
+  book: string;
+  bookApi: string;
+  bookMarkdown: string;
+  freeChapter: string | null;
+  freeChapterMarkdown: string | null;
+  amazonKindle: string | null;
+  amazonPaperback: string | null;
+  kindleUnlimited: boolean;
+  citeAs: string;
+}
+
+export interface Term {
+  slug: string;
+  term: string;
+  aliases: string[];
+  kind: "coined" | "operational";
+  fieldOfOrigin: string | null;
+  definition: string;
+  definedIn: { book: BookLink; chapter: string; source: "bible" | "manuscript" };
+  usedInBooks: BookLink[];
+  checkable: { claim: string; howToCheck: string };
+  faq: { q: string; a: string }[];
+  relatedTerms: { slug: string; term: string; url: string; apiUrl: string }[];
+  url: string;
+  markdownUrl: string;
+  apiUrl: string;
+  lastVerified: string;
+  links: HandoffLinks;
+}
+
+export interface TermsResponse {
+  meta: Meta;
+  count: number;
+  terms: Term[];
+}
+
+export interface TermDetail extends Term {
+  meta: Meta;
 }

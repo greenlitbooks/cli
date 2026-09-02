@@ -54,6 +54,27 @@ test("topics filter matches", async () => {
   assert.ok(data.topics.some((t) => t.slug === "durable-execution"));
 });
 
+test("terms lists the glossary", async () => {
+  const { stdout } = await run(["terms", "--json"]);
+  const data = JSON.parse(stdout);
+  assert.ok(data.count >= 20, `expected >= 20 terms, got ${data.count}`);
+  assert.ok(data.terms.every((t) => t.definition && t.definedIn.book.slug));
+});
+
+test("define resolves an alias and returns links", async () => {
+  const { stdout } = await run(["define", "green lie", "--json"]);
+  const data = JSON.parse(stdout);
+  assert.equal(data.slug, "green-lie");
+  assert.match(data.links.book, /greenlitbooks\.com\/book\//);
+  assert.ok(data.links.citeAs);
+});
+
+test("unknown term exits 1 with a message", async () => {
+  const { code, stderr } = await run(["define", "not-a-real-term"]);
+  assert.equal(code, 1);
+  assert.match(stderr, /No glossary term/);
+});
+
 test("unknown slug exits 1 with a message", async () => {
   const { code, stderr } = await run(["get", "not-a-real-book"]);
   assert.equal(code, 1);

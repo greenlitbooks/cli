@@ -1,7 +1,7 @@
 {
   "name": "greenlit-books",
-  "version": "1.0.0",
-  "description": "Official thin CLI for the Greenlit Books public catalog API: search, browse, and fetch practical books on working with AI. JSON-first, built for agents and humans.",
+  "version": "1.1.0",
+  "description": "Official thin CLI for the Greenlit Books public catalog API: search, browse, fetch, and define the terms the books coin. JSON-first, built for agents and humans.",
   "keywords": [
     "greenlit-books",
     "cli",
@@ -11,7 +11,11 @@
     "mcp",
     "claude",
     "catalog",
-    "search"
+    "search",
+    "glossary",
+    "definitions",
+    "llms-txt",
+    "kindle"
   ],
   "homepage": "https://greenlitbooks.com/developers",
   "bugs": "https://github.com/greenlitbooks/cli/issues",

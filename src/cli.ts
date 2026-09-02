@@ -9,6 +9,8 @@ import { conceptsCommand } from "./commands/concepts.js";
 import { topicsCommand } from "./commands/topics.js";
 import { catalogCommand } from "./commands/catalog.js";
 import { openCommand } from "./commands/open.js";
+import { termsCommand } from "./commands/terms.js";
+import { defineCommand } from "./commands/define.js";
 
 const program = new Command();
 
@@ -58,6 +60,18 @@ program
   .command("concepts")
   .description("the one named question each book answers")
   .action(conceptsCommand);
+
+program
+  .command("terms")
+  .description("the glossary: every term the books coin or pin down, with its source")
+  .argument("[query]", "filter terms by phrase (display-only convenience)")
+  .action(termsCommand);
+
+program
+  .command("define")
+  .description("one glossary term: the book's own definition, receipts, and links")
+  .argument("<term>", "the term, an alias, or its slug, e.g. \"green lie\" or gate-faith")
+  .action(defineCommand);
 
 program
   .command("topics")
